@@ -57,3 +57,14 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 	else if(p_value <= root_value && q_value <= root_value)
 		return lowestCommonAncestor(root->left, p, q);
 };
+int getHeight(TreeNode* root) {
+	if (root == NULL) return 0;
+	return max(getHeight(root->left),getHeight(root->right)) + 1;
+};
+bool isBalanced(TreeNode *root) {
+	if (root == NULL) return true;
+	int left_height = getHeight(root->left);
+	int right_height = getHeight(root->right);
+	if (abs(left_height - right_height) > 1) return false;
+	else return isBalanced(root->left) && isBalanced(root->right);
+}
