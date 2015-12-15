@@ -1,6 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 #include <vector>
+#include <iostream>
 //data structure about tree node
 struct TreeNode {
 	TreeNode * right;
@@ -20,4 +21,7 @@ TreeNode* lowestCommonAncestor(TreeNode*, TreeNode*, TreeNode*); //For Binary Se
 bool isBalanced(TreeNode*);
 //check if a binary tree is symmetric (iterated method)
 bool isSymmetric_1(TreeNode*);
+//recursive method
+bool isSymmetric_2(TreeNode*,TreeNode*);
+bool isSymmetric_2(TreeNode*);
 #endif

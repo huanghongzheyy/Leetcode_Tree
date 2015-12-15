@@ -1,5 +1,4 @@
 #include "tree.h"
-#include <iostream>
 #include <algorithm>
 #include <queue>
 using namespace std;
@@ -22,13 +21,13 @@ TreeNode* buildTree(vector<int>& nums) {
 		while (i <= j) {
 			TreeNode *now = fathers.front();
 			fathers.pop();
-			if (nums[i]!=NULL) {
+			if (nums[i]) {
 				TreeNode *left_son = new TreeNode(nums[i]);
 				now->left = left_son;
 				sons.push(left_son);
 			}
 			i++;
-			if (i<=j && nums[i]!=NULL) {
+			if (i<=j && nums[i]) {
 				TreeNode *right_son = new TreeNode(nums[i]);
 				now->right = right_son;
 				sons.push(right_son);
@@ -103,3 +102,20 @@ bool isSymmetric_1(TreeNode* root) {
 	} while (!queue_left.empty() && !queue_right.empty());
 	return true;
 };
+
+bool isSymmetric_2(TreeNode* l_node, TreeNode* r_node){
+	if(!l_node && !r_node) return true;
+	else if((!l_node && r_node) || (!r_node && l_node)) return false;
+	else{
+		if(l_node->val!=r_node->val) return false;
+		return isSymmetric_2(l_node->left,r_node->right) && isSymmetric_2(l_node->right,r_node->left);
+	}
+}
+bool isSymmetric_2(TreeNode* root){
+	if (!root) return true;
+	else
+		return isSymmetric_2(root->left,root->right);
+}
+
+
+
