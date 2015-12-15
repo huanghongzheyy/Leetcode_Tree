@@ -3,9 +3,13 @@
 using namespace std;
 
 int main() {
-	vector<int> nums = {1,NULL,3,2,NULL,NULL,3,NULL,4,NULL,5};
+	vector<int> nums = {1,2,2,3,4,4,3,5,NULL,NULL,6,7,NULL,NULL,5};
 	TreeNode *root = buildTree(nums);
 	cout << maxDepth_1(root) << endl;
-	cout << isBalanced(root) << endl;
+	if (isSymmetric_1(root)) {
+		cout << "This binary tree is sysmmetric!!!" << endl;
+	}
+	else
+		cout << "This bianry tree is not sysmmetric!!!" << endl;
 	return 0;
 }
