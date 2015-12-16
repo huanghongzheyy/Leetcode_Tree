@@ -103,3 +103,11 @@ bool isSymmetric_1(TreeNode* root) {
 	} while (!queue_left.empty() && !queue_right.empty());
 	return true;
 };
+
+bool isSymmetric_2(TreeNode * l_node,TreeNode* r_node) {
+
+};
+bool isSymmetric_2(TreeNode* root) {
+	if (!root) return true;
+	return 
+};
