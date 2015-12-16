@@ -1,6 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 #include <vector>
+#include <iostream>
 //data structure about tree node
 struct TreeNode {
 	TreeNode * right;
