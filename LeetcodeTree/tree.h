@@ -2,6 +2,8 @@
 #define TREE_H
 #include <vector>
 #include <iostream>
+using std::vector;
+
 //data structure about tree node
 struct TreeNode {
 	TreeNode * right;
@@ -24,4 +26,7 @@ bool isSymmetric_1(TreeNode*);
 //recursive method
 bool isSymmetric_2(TreeNode*,TreeNode*);
 bool isSymmetric_2(TreeNode*);
+//level order traversal
+vector<vector<int> > levelOrder_top(TreeNode*);
+vector<vector<int> > levelOrder_bottom(TreeNode*);
 #endif
