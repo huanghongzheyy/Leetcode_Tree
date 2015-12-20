@@ -1,7 +1,10 @@
 #include "tree.h"
 #include <algorithm>
 #include <queue>
-using namespace std;
+using std::queue;
+using std::min;
+using std::max;
+using std::reverse;
 
 TreeNode::TreeNode(int i) {
 	this->left = NULL;
@@ -11,7 +14,7 @@ TreeNode::TreeNode(int i) {
 TreeNode* buildTree(vector<int>& nums) {
 	if (nums.size() == 0) return NULL;
 	queue<TreeNode*> fathers;
-	queue<TreeNode *> sons;
+	queue<TreeNode*> sons;
 	TreeNode *root = new TreeNode(nums[0]);
 	fathers.push(root);
 	for (int i = 1;i <= nums.size()-1;) {
@@ -110,12 +113,55 @@ bool isSymmetric_2(TreeNode* l_node, TreeNode* r_node){
 		if(l_node->val!=r_node->val) return false;
 		return isSymmetric_2(l_node->left,r_node->right) && isSymmetric_2(l_node->right,r_node->left);
 	}
-}
+};
 bool isSymmetric_2(TreeNode* root){
 	if (!root) return true;
 	else
 		return isSymmetric_2(root->left,root->right);
-}
+};
 
+vector<vector<int> > levelOrder_top(TreeNode* root) {
+	vector<vector<int> > result;
+	if (!root)  return result;
+	vector<TreeNode*> fathers;
+	vector<TreeNode*> sons;
+	vector<int> f;
+	fathers.push_back(root);
+	while (fathers.size() != 0) {
+		for (int i = 0;i < fathers.size();i++) {
+			f.push_back(fathers[i]->val);
+			if (fathers[i]->left) sons.push_back(fathers[i]->left);
+			if (fathers[i]->right) sons.push_back(fathers[i]->right);
+		}
+		fathers.swap(sons);
+		sons.clear();
+		result.push_back(f);
+		f.clear();
+	}
+	return result;
+};
+vector<vector<int> > levelOrder_bottom(TreeNode* root) {
+	vector<vector<int> > result;
+	if (!root) {
+		return result;
+	}
+	vector<TreeNode*> fathers;
+	vector<TreeNode*> sons;
+	vector<int> f;
+	fathers.push_back(root);
+	while (fathers.size() != 0) {
+		for (int i = 0;i < fathers.size();i++) {
+			f.push_back(fathers[i]->val);
+			if (fathers[i]->left) sons.push_back(fathers[i]->left);
+			if (fathers[i]->right) sons.push_back(fathers[i]->right);
+		}
+		fathers.swap(sons);
+		sons.clear();
+		result.push_back(f);
+		f.clear();
+	}
+	reverse(result.begin(),result.end()); //std::reverse()
+	return result;
+};
 
 
